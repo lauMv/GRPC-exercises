@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+service UserService {
+  rpc GetUser (GetUserRequest) returns (UserResponse);
+  rpc ListUsers (ListUsersRequest) returns (stream UserResponse);
+  rpc StreamUserActions (stream UserActionRequest) returns (stream UserUpdateResponse);
+
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message UserResponse {
+  string user_id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message ListUsersRequest {
+  string filter = 1;
+}
+
+message UserActionRequest {
+  string user_id = 1;
+  string action = 2;
+}
+
+message UserUpdateResponse {
+  string message = 1;
+}
